@@ -13,14 +13,19 @@ int main(){
 
 int my_strcmp(cs,ct){
 /* The goal is to run a loop and to compare cs[i] to ct[i] with ascii and return the value */
-int ascii_cs = ascii_ct = 0;
-int i;
+
+int ascii_cs,ascii_ct;
+
+
+ascii_cs = ascii_ct = 0;
+
  
 }
 int my_strsncmp(cs,ct,n){
 
 }
-char my_strcht(cs,c){
-
+char my_strchr(cs,c){
+int MAX_INPUT=80;
+int my_strchr; /*this will be the returned result*/
 }
 
