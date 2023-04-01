@@ -20,7 +20,7 @@ int main()
     printf("Enter an unsigned long integer: \n");
     while(1){
             if(scanf("%lu", &x)==1){
-            printf("The bits of %lu are:\n", x);
+            printf("The given number is:%lu\n", x);
             count_bits(x);
             } else{
                 printf("End of input.");
