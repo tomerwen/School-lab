@@ -10,6 +10,7 @@ int count_bits(unsigned long n){
         }
         n >>= 2;
     }
+    printf("There are %d even bits that are on.\n" , ret);
     return ret;
 }
 int main()
