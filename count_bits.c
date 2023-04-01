@@ -6,7 +6,7 @@ int i;
     int even_bits_count=0;
     for(i=0;i<sizeof(unsigned long)*8;i++){
         putchar((n & mask) ? '1':'0');
-        if(i % 2 == 0 && (n & mask)){
+        if(i % 2 == 0 && (n & mask) && i!=0){
             even_bits_count++;
         }
         n<<=1;
