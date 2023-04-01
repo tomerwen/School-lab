@@ -4,6 +4,7 @@ void count_bits(unsigned long n){
 int i;
     unsigned long mask = 1ul << (sizeof(unsigned long) * 8 - 1);
     int even_bits_count=0;
+    n>>1;
     for(i=0;i<sizeof(unsigned long)*8;i++){
         putchar((n & mask) ? '1':'0');
         if(i % 2 == 0 && (n & mask)){
