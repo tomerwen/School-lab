@@ -12,7 +12,7 @@ int i;
         n<<=1;
     }
     putchar('\n');
-    printf("There are %d even bits that are on." , even_bits_count);
+    printf("There are %d even bits that are on.\n" , even_bits_count);
 }
 
 int main(){
