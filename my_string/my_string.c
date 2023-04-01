@@ -35,7 +35,7 @@ int main(){
         scanf("%79s",chr);
         printf("The result of strchr of %c with %c is %c",s1,chr,my_strchr(s1,chr));
     }
-
+    return 0;
 }
 
 
