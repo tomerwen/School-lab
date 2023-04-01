@@ -18,9 +18,9 @@ int main()
     printf("-----------------------------------------------------------------------------------");
     printf("Enter an unsigned long integer: \n");
     while(1){
-            if(scanf("%lu", &n)==1){
-            printf("The bits of %lu are:\n", n);
-            count_bits(n);
+            if(scanf("%lu", &x)==1){
+            printf("The bits of %lu are:\n", x);
+            count_bits(x);
             } else{
                 printf("End of input.");
                 break;
