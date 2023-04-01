@@ -17,9 +17,15 @@ int i;
 
 int main(){
     unsigned long n;
-    printf("Enter an unsigned long integer: ");
-    scanf("%lu", &n);
-    printf("The bits of %lu are:\n", n);
-    count_bits(n);
-    return 0;
+    printf("Enter an unsigned long integer: \n");
+    while(1){
+        if(scanf("%lu", &n)==1){
+        printf("The bits of %lu are:\n", n);
+        count_bits(n);
+        } else{
+            printf("End of input.");
+            break;
+            }
+        }
+        return 0;
 }
