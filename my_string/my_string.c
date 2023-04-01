@@ -4,7 +4,7 @@
 /*           int strncmp(cs,ct,n) - compare at most n charactets of string cs to string ct; return <0 if cs<ct , 0 if cs==ct and >0 if cs>ct.         */
 /*           char strchr(cs,c) - return pointer to first occurrence of c in cs or NULL if not present                         */
 
-char s1[80],s2[80];
+char s1[80]=0,s2[80]=0;
 
 int main(){
     char menu;
@@ -39,16 +39,20 @@ int main(){
 }
 
 
-int my_strcmp(cs,ct){
+int my_strcmp(char* cs,char* ct){
 /* The goal is to run a loop and to compare cs[i] to ct[i] with ascii and return the value */
-int i=0,diff=0;
-int ascii_cs,ascii_ct;
-
-
-ascii_cs = ascii_ct = 0;
-
- 
+    int i=0,diff=0;
+    for (i; i<80; i++){
+        if(cs[i]>ct[i]){
+            return 1;
+        }
+        else if (cs[i]<ct[i]){
+            return -1;
+        }
+    }
+    return 0;
 }
+
 int my_strncmp(cs,ct,n){
 
 }
