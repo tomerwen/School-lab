@@ -31,6 +31,15 @@ int my_strncmp(char* cs,char* ct,int n){
     }
     return 0;
 }
+int my_strchr(char* cs, char c){
+        int i;
+        for (i=0; i<80; i++){
+            if(cs[i]==c){
+                return i;
+            }
+        }
+        return -1;
+}
 
 int main(){
     char s1[80]={0},s2[80]={0};
@@ -55,6 +64,14 @@ int main(){
             scanf("%d", &num);
             printf("The result of strncmp of %s and %s and %d is %d:\n",s1,s2,num,my_strncmp(s1,s2,num));
         }
+        if(menu==3){
+            char chr;
+            printf("Please enter a word\n");
+            scanf("%79s",s1);
+            printf("Please enter a char");
+            scanf("%c", &chr);
+            printf("The result of strchr of %s with %c is %d",s1,chr,my_strchr(s1,chr));
+     }
     }
     return 0;
 }
