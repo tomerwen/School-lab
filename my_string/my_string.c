@@ -52,8 +52,8 @@ int main(){
             printf("Please enter the second word:\n");
             scanf("%79s", s2);
             printf("Please enter a number:\n");
-            scanf("%79s",num);
-            printf("The result of strncmp of %c amd %c and %c is %c:\n",s1,s2,num,my_strncmp(s1,s2,num));
+            scanf("%d", &num);
+            printf("The result of strncmp of %s and %s and %d is %d:\n",s1,s2,num,my_strncmp(s1,s2,num));
         }
     }
     return 0;
