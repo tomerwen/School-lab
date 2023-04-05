@@ -43,19 +43,19 @@ int my_strchr(char* cs, char c){
 
 int main(){
     char s1[80]={0},s2[80]={0};
-    int menu=1,ans;
+    int ans;
+    char* menu;
     printf("Please choose what you would like to do: \n1.strcmp\n2.strncmp\n3.strchr\n");
     while(menu!=EOF){
-    scanf("%d",&menu);
-    printf('%d', menu);
-        if(menu==1){
+    scanf("%s",menu);
+        if(menu=='1'){
             printf("Please enter the first word:\n");
             scanf("%79s", s1);
             printf("Please enter the second word:\n");
             scanf("%79s", s2);
             printf("The result of strcmp on %s and %s is %d.\n",s1,s2,my_strcmp(s1,s2));
         }
-        if(menu==2){
+        if(menu=='2'){
             char num;
             printf("Please enter the first word:\n");
             scanf("%79s", s1);
@@ -65,7 +65,7 @@ int main(){
             scanf("%d", &num);
             printf("The result of strncmp of %s and %s and %d is %d:\n",s1,s2,num,my_strncmp(s1,s2,num));
         }
-        if(menu==3){
+        if(menu=='3'){
             char chr;
             printf("Please enter a word\n");
             scanf("%79s",s1);
