@@ -43,7 +43,7 @@ int my_strchr(char* cs, char c){
 
 int main(){
     char s1[80]={0},s2[80]={0};
-    char* menu;
+    char menu[80];
     printf("Please choose what you would like to do: \n1.strcmp\n2.strncmp\n3.strchr\n");
     while(menu!=EOF){
     scanf("%s",menu);
