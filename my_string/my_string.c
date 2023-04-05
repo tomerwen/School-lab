@@ -34,11 +34,10 @@ int my_strncmp(char* cs,char* ct,int n){
 
 int main(){
     char s1[80]={0},s2[80]={0};
-    int menu,ans;
+    int menu=1,ans;
     printf("Please choose what you would like to do: \n1.strcmp\n2.strncmp\n3.strchr\n");
-    scanf("%d",&menu);
     while(menu!=EOF){
-        
+    scanf("%d",&menu);
         if(menu==1){
             printf("Please enter the first word:\n");
             scanf("%79s", s1);
