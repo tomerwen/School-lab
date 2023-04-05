@@ -47,6 +47,7 @@ int main(){
     printf("Please choose what you would like to do: \n1.strcmp\n2.strncmp\n3.strchr\n");
     while(menu!=EOF){
     scanf("%d",&menu);
+    printf('%d', menu);
         if(menu==1){
             printf("Please enter the first word:\n");
             scanf("%79s", s1);
@@ -68,9 +69,9 @@ int main(){
             char chr;
             printf("Please enter a word\n");
             scanf("%79s",s1);
-            printf("Please enter a char");
+            printf("Please enter a char\n");
             scanf("%c", &chr);
-            printf("The result of strchr of %s with %c is %d",s1,chr,my_strchr(s1,chr));
+            printf("The result of strchr of %s with %c is %d\n",s1,chr,my_strchr(s1,chr));
      }
     }
     return 0;
