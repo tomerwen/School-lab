@@ -36,8 +36,9 @@ int main(){
     char s1[80]={0},s2[80]={0};
     int menu,ans;
     printf("Please choose what you would like to do: \n1.strcmp\n2.strncmp\n3.strchr\n");
-    ans = scanf("%d",&menu);
-    while(ans!=EOF){
+    scanf("%d",&menu);
+    while(menu!=EOF){
+        
         if(menu==1){
             printf("Please enter the first word:\n");
             scanf("%79s", s1);
