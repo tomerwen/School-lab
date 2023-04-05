@@ -21,15 +21,13 @@ int my_strcmp(char* cs,char* ct){
 }
 int my_strncmp(char* cs,char* ct,int n){
     int i;
-    while (i<n){
-        for (i=0; i<80; i++){
+        for (i=0; i<80 && i<n; i++){
             if(cs[i]>ct[i]){
                 return 1;
             }
             else if (cs[i]<ct[i]){
                 return -1;
             }
-        }
     }
     return 0;
 }
@@ -46,6 +44,16 @@ int main(){
             printf("Please enter the second word:\n");
             scanf("%79s", s2);
             printf("The result of strcmp on %s and %s is %d.\n",s1,s2,my_strcmp(s1,s2));
+        }
+        if(menu==2){
+            char num;
+            printf("Please enter the first word:\n");
+            scanf("%79s", s1);
+            printf("Please enter the second word:\n");
+            scanf("%79s", s2);
+            printf("Please enter a number:\n");
+            scanf("%79s",num);
+            printf("The result of strncmp of %c amd %c and %c is %c:\n",s1,s2,num,my_strncmp(s1,s2,num));
         }
     }
     return 0;
