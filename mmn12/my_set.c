@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define ENLARGE_SIZE realloc(set,5*sizeof(int));
 /* needs to be used on realloc function*/
