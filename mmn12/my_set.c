@@ -2,16 +2,23 @@
 #include <stdlib.h>
 
 #define ENLARGE_SIZE realloc(set,5*sizeof(int));
-/* needs to be used on realloc function*/
+
+
+void print_set(int set[], int size){ /* print the set in orginized way*/
+    int i;
+    for(i=0;i<size;i++){
+        printf("%d", set[i]);
+    }
+}
 void get_set(){ /* recieve input from user and build group*/
     int arraysize = 5;
-    printf("Please enter your inputs for the set");
-    int input;
+    int input=0;
     int j=0;
-    int *set[5];
+    int set[5];
+    printf("Please enter your inputs for the set");
     while(input!=EOF){
-    scanf("%d",&input);
     int i;
+    scanf("%d",&input);
     for(i=0;i<=j;i++){
         if(j==0){
             set[0]=input;
@@ -24,18 +31,12 @@ void get_set(){ /* recieve input from user and build group*/
         if(set[i]==input){
             break;
         }
-        set[j+1]==input;
+        set[j+1]=input;
     }
     }
     print_set(set,arraysize);
 }
 
-void print_set(int set[], int size){ /* print the set in orginized way*/
-    int i;
-    for(i=0;i<size;i++){
-        printf("%d", set[i]);
-    }
-}
 
 int main(){ /*run the program*/
 printf("Please enter your list of integers");
