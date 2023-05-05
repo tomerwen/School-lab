@@ -10,7 +10,8 @@ void get_set(){ /* recieve input from user and build group*/
     int *set[5];
     while(input!=EOF){
     scanf("%d",&input);
-    for(int i=0;i<=j;i++){
+    int i;
+    for(i=0;i<=j;i++){
         if(j==0){
             set[0]=input;
             j++;
@@ -29,7 +30,8 @@ void get_set(){ /* recieve input from user and build group*/
 }
 
 void print_set(int set[], int size){ /* print the set in orginized way*/
-    for(int i=0;i<size;i++){
+    int i;
+    for(i=0;i<size;i++){
         printf("%d", set[i]);
     }
 }
