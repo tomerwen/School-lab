@@ -32,7 +32,8 @@ void get_set(){ /* recieve input from user and build group*/
         if(set[i]==input){
             break;
         }
-        set[j+1]=input;
+        set[j]=input;
+        j++;
     }
     }
     print_set(set,arraysize);
