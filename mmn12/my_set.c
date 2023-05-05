@@ -20,6 +20,7 @@ void get_set(){ /* recieve input from user and build group*/
     int i;
     scanf("%d",&input);
     for(i=0;i<=j;i++){
+        printf("%d",i);
         if(j==0){
             set[0]=input;
             j++;
@@ -39,7 +40,5 @@ void get_set(){ /* recieve input from user and build group*/
 
 
 int main(){ /*run the program*/
-printf("Please enter your list of integers");
-
     get_set();
 }
