@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ENLARGE_SIZE set=realloc(set,5*sizeof(int));
+#define ENLARGE_SIZE set = realloc(set, (arraysize + 5) * sizeof(int))
 int *set;
 int arraysize = 5;
 
-void print_set() { /* print the set in organized way*/
-    int i;
+void print_set() {
     printf("This is the set: ");
-    for (i = 0; i < arraysize; i++){
-        printf("i= %i and it is %d", i,set[i]);
-        if (i < arraysize - 1){
+    for (int i = 0; i < arraysize; i++) {
+        printf("%d", set[i]);
+        if (i < arraysize - 1) {
             printf(", ");
         }
     }
+    printf("\n");
 }
 
 void get_set() {
@@ -36,12 +36,14 @@ void get_set() {
             set[j++] = input;
         }
     }
-    set = realloc(set, j * sizeof(int));
-    arraysize = j;
 }
 
-int main(){ /*run the program*/
+int main() {
     set = malloc(arraysize * sizeof(int));
+    if (set == NULL) {
+        printf("Memory allocation error\n");
+        return 1;
+    }
     get_set();
     print_set();
     free(set);
