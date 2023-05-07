@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ENLARGE_SIZE set=realloc(set,5*sizeof(int));
+#define ENLARGE_SIZE set=realloc(set,1*sizeof(int));
 int *set;
 int arraysize = 5;
 
