@@ -7,9 +7,12 @@ int arraysize = 5;
 
 void print_set(){ /* print the set in orginized way*/
     int i;
-    for(i=0;i<arraysize;i++){
+    for(i=0;i<=arraysize;i++){
         printf("%d", set[i]);
-    }
+        if(i<arraysize){
+        printf(", ");
+        }
+        }
 }
 void get_set(){ /* recieve input from user and build group*/
     int input=0;
@@ -26,7 +29,7 @@ void get_set(){ /* recieve input from user and build group*/
             j++;
         }
         if (j==arraysize){
-            ENLARGE_SIZE;
+            set = ENLARGE_SIZE;
             arraysize=arraysize+5;
         }
         if(set[i]==input){
