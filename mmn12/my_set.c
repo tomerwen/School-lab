@@ -14,7 +14,7 @@ void print_set() { /* print the set in orginized way*/
             printf(", ");
         }
     }
-    printf("\b");
+    printf("\n");
 }
 
 void get_set() {
