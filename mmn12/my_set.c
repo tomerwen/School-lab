@@ -5,16 +5,17 @@
 int *set;
 int arraysize = 5;
 
-void print_set() { /* print the set in orginized way*/
+void print_set() { /* print the set in organized way*/
     int i;
     printf("This is the set: ");
     for (i = 0; i < arraysize; i++){
         printf("%d", set[i]);
-        if (i < arraysize-1){
+        if (i < arraysize - 1){
             printf(", ");
         }
     }
 }
+
 void get_set() {
     int input;
     int j = 0;
