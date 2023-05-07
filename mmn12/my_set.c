@@ -27,11 +27,11 @@ void get_set() {
             }
         }
         if (i == j) {
-            set[j++] = input;
             if (j == arraysize) {
                 ENLARGE_SIZE;
                 arraysize += 5;
             }
+            set[j++] = input;
         }
     }
 }
