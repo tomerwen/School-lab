@@ -1,0 +1,2 @@
+Please enter your inputs for the set: 
+This is the set: 13, 45, -9, 18, 3, 4, 55, 66
