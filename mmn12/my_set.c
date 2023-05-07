@@ -8,9 +8,9 @@ int arraysize = 5;
 void print_set() { /* print the set in orginized way*/
     int i;
     printf("This is the set: ");
-    for (i = 0; i <= arraysize; i++){
+    for (i = 0; i < arraysize; i++){
         printf("%d", set[i]);
-        if (i < arraysize){
+        if (i < arraysize-1){
             printf(", ");
         }
     }
