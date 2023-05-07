@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ENLARGE_SIZE realloc(set,5*sizeof(int));
+#define ENLARGE_SIZE realloc(*set,5*sizeof(int));
 int set[5];
 int arraysize = 5;
 
@@ -29,7 +29,7 @@ void get_set(){ /* recieve input from user and build group*/
             j++;
         }
         if (j==arraysize){
-            set = ENLARGE_SIZE;
+            ENLARGE_SIZE;
             arraysize=arraysize+5;
         }
         if(set[i]==input){
