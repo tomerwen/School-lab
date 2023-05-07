@@ -37,7 +37,9 @@ void get_set() {
 }
 
 int main(){ /*run the program*/
+    set = malloc(arraysize * sizeof(int));
     get_set();
     print_set();
-
+    free(set);
+    return 0;
 }
