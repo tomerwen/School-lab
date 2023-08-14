@@ -8,8 +8,7 @@ struct project_ast {
     char label_name[MAX_LABEL_LENGTH+1];
     enum {
         project_ast_option,
-        project_ast_directive,
-        project_ast_syntax_error
+        project_ast_directive
     } project_ast_options;
     union{
         struct{
@@ -49,22 +48,25 @@ struct project_ast {
                 project_ast_inst_rts,
                 project_ast_inst_stop
             } project_ast_inst_opt;
+            enum{
+                project_ast_operand_option_none =0,
+                project_ast_operand_option_const_number =1,
+                project_ast_operand_option_label =3,
+                project_ast_operand_option_register_number =5
+            }project_ast_inst_operand_options[2];
+            union{
+                int const_num;
+                int reg_num;
+                char * label;
+            }project_ast_instant_operands[2];
         }project_ast_instant;
-        enum{
-            project_ast_operand_option_none =0,
-            project_ast_operand_option_const_number =1,
-            project_ast_operand_option_label =3,
-            project_ast_operand_option_register_number =5
-        }project_ast_inst_operand_options[2];
-        union{
-            int const_num;
-            int reg_num;
-            char * label;
-        }project_ast_instant_operands[2];
     } directive_or_inst;
     };
 
 typedef struct project_ast project_ast;
+
+
+void lexer_delcat_mem();
 
 project_ast lexer_get_ast(char *logical_line);
 

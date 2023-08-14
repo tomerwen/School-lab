@@ -5,27 +5,12 @@
 #include "../data_structures/trie.h"
 #include <string.h>
 #include "../preprocessor/preprocessor.h"
-
+#include "../project_common/project_common.h"
 
 
 #define MAX_LINE_LENGTH 81
 #define BASE_ADDR 100
 
-
-struct symbol{
-    enum{
-        symbol_extern,
-        symbol_entry,
-        symbol_code,
-        symbol_data,
-        symbol_entry_code,
-        symbol_entry_data
-        /*if symbol is symbol_entry that means that it must be defined later in the file*/
-    }symbol_type;
-    int address;
-    unsigned int declared_line;
-    char symbol_name[MAX_LABEL_LENGTH + 1];
-};
 
 struct missing_symbol{
     char symbol_name[MAX_LABEL_LENGTH+1];
@@ -33,16 +18,6 @@ struct missing_symbol{
     unsigned int *word;
     unsigned int call_address;
 };
-
-struct obj_file{
-    Vector code_section;
-    Vector data_section;
-    Vector symbol_table;
-    Trie symbol_table_lookup;
-    Vector missing_symbol_table;
-    Vector external_calls;
-};
-
 
 
 struct external_call{
@@ -161,34 +136,33 @@ static int project_assembler_compile(FILE * am_file,const char * am_file_name , 
                     }
                 }
             }
-            case project_ast_syntax_error:
             break;
-            case project_ast_option: 
-                word = ast.directive_or_inst.project_ast_inst_operand_options[1] << 2; /*destination move to bits 2-4*/
-                word |= ast.directive_or_inst.project_ast_inst_operand_options[0] << 9; /*source move to bits 11-9*/
+            case project_ast_option:
+                word = ast.directive_or_inst.project_ast_instant.project_ast_inst_operand_options[1] << 2; /*destination move to bits 2-4*/
+                word |= ast.directive_or_inst.project_ast_instant.project_ast_inst_operand_options[0] << 9; /*source move to bits 11-9*/
                 word |= ast.directive_or_inst.project_ast_instant.project_ast_inst_opt << 5; /*opcode move to bits 5-8*/
                 vector_insert(obj->code_section,&word); 
                 if (ast.directive_or_inst.project_ast_instant.project_ast_inst_opt >= project_ast_inst_mov && 
                  ast.directive_or_inst.project_ast_instant.project_ast_inst_opt <= project_ast_inst_lea){
                     /* mov,cmp,add,sub,lea*/
-                    if(ast.directive_or_inst.project_ast_inst_operand_options[1]== project_ast_operand_option_register_number &&
-                    ast.directive_or_inst.project_ast_inst_operand_options[0] == project_ast_operand_option_register_number){ /*specific case of two registers*/
-                        word = ast.directive_or_inst.project_ast_instant_operands[1].reg_num << 2 ;
-                        word |= ast.directive_or_inst.project_ast_instant_operands[0].reg_num << 7 ;
+                    if(ast.directive_or_inst.project_ast_instant.project_ast_inst_operand_options[1]== project_ast_operand_option_register_number &&
+                    ast.directive_or_inst.project_ast_instant.project_ast_inst_operand_options[0] == project_ast_operand_option_register_number){ /*specific case of two registers*/
+                        word = ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[1].reg_num << 2 ;
+                        word |= ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[0].reg_num << 7 ;
                         vector_insert(obj->code_section,&word);
                     }else{
                         for(i=0;i<2;i++){
-                            switch (ast.directive_or_inst.project_ast_inst_operand_options[i]) {
+                            switch (ast.directive_or_inst.project_ast_instant.project_ast_inst_operand_options[i]) {
                             case project_ast_operand_option_const_number:  
-                            word = ast.directive_or_inst.project_ast_instant_operands[i].const_num << 2;
+                            word = ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[i].const_num << 2;
                             vector_insert(obj->code_section,&word);
                             break;
                             case project_ast_operand_option_register_number:
-                            word = ast.directive_or_inst.project_ast_instant_operands[i].const_num << (7-(i*5));
+                            word = ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[i].const_num << (7-(i*5));
                             vector_insert(obj->code_section,&word);
                             break;
                             case project_ast_operand_option_label:
-                                find_symbol = trie_exists(obj->symbol_table_lookup, ast.directive_or_inst.project_ast_instant_operands[i].label);
+                                find_symbol = trie_exists(obj->symbol_table_lookup, ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[i].label);
                                 if(find_symbol && find_symbol->symbol_type == symbol_entry){
                                 word = find_symbol->address << 2;
                                 if(find_symbol->symbol_type == symbol_extern){
@@ -202,7 +176,7 @@ static int project_assembler_compile(FILE * am_file,const char * am_file_name , 
                             inserted_word = vector_insert(obj->code_section,&word);
                             if(!find_symbol || (find_symbol && find_symbol->symbol_type == symbol_entry)){
                                 /*symbol might be found later*/
-                                strcpy(missingSymbol.symbol_name,ast.directive_or_inst.project_ast_instant_operands[i].label);
+                                strcpy(missingSymbol.symbol_name,ast.directive_or_inst.project_ast_instant.project_ast_instant_operands[i].label);
                                 missingSymbol.word = inserted_word;
                                 missingSymbol.call_line=line_counter;
                                 missingSymbol.call_address = external_call_addr = vector_get_item_count(obj->code_section) + BASE_ADDR -1;
@@ -309,9 +283,10 @@ static int project_assembler_compile(FILE * am_file,const char * am_file_name , 
     }
     VECTOR_FOR_EACH(begin_symbol,end_symbol,obj->symbol_table){
         if(*begin_symbol){
-            if( ((struct symbol* )(*begin_symbol))->symbol_type == symbol_entry ||
-             ((struct symbol* )(*begin_symbol))->symbol_type == symbol_entry_code){
+            if(((struct symbol* )(*begin_symbol))->symbol_type == symbol_entry){
                 /* ERROR entry X was declared at line Y but was never defined in file*/
+            }else if(((struct symbol*)(*begin))->symbol_type == symbol_entry_code){
+                obj->entries_count++;
             }
         }
     }
@@ -334,7 +309,7 @@ static int project_assembler_compile(FILE * am_file,const char * am_file_name , 
 }
 
 static struct obj_file project_assembler_create_job(){
-    struct obj_file ret;
+    struct obj_file ret = {0};
     ret.code_section = new_vector(ctor_mem_word,dtor_mem_word);
     ret.data_section = new_vector(ctor_mem_word,dtor_mem_word);
     ret.symbol_table = new_vector(ctor_symbol,dtor_symbol);
