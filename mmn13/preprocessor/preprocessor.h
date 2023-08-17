@@ -1,10 +1,8 @@
 #ifndef __PREPROCESSOR_H_
 #define __PREPROCESSOR_H_
 
-
-const char * project_preprocess(const char * file_base_name){ /* This is the API for the preprocessor*/
-
-}
+/* This is the API for the preprocessor*/
+const char * project_preprocess(char * file_base_name, const char * out_dir);
 
 
 

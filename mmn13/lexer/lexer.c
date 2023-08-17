@@ -144,6 +144,13 @@ static void lexerParseInstructionOperands(project_ast * ast, char * operandStrin
     char *tok1;
     char *seperator = NULL;
     if(operandString) seperator = strchr(operandString,',');
+    else{
+        if(aib->dest_op_options != NULL){
+            sprintf(ast->ast_error_msg,"instruction: %s expects 1 operand", aib->inst_name);
+            return;
+        }
+        return;
+    }
     if(seperator){
         tok1 = strchr(seperator+1,',');
         if(tok1) strcpy(ast->ast_error_msg,"found at least two seperator tokens");
