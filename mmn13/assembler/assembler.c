@@ -328,7 +328,6 @@ int project_assembler(int file_counter, char **file_names){
     FILE * am_file;
     struct obj_file curr_obj;
     const char * out_dir = NULL;
-    char opt;
     for(i=0;i<file_counter;i++){
         if(file_names[i] == NULL) continue;
         if(strcmp(file_names[i],"-o")==0){

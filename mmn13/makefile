@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -ansi -pedantic -Wall
 ifdef DEBUG
-	CFLAG += fsanitize-address -g
+	CFLAG +=  -g
 endif
 PROG_NAME = assembler
 
@@ -9,7 +9,7 @@ TEST_DIR = tests
 TEST_DIR_IN = $(TEST_DIR)/tests_in
 TEST_DIR_IN_WARN = $(TEST_DIR_IN)/warnings
 TEST_DIR_IN_ERR = $(TEST_DIR_IN)/error
-TEST_DIR_IN_GOOD = $(TEST_DIR_IN)/good
+TEST_DIR_IN_OK = $(TEST_DIR_IN)/ok
 
 TEST_DIR_OUT = $(TEST_DIR)/tests_out
 

@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <libgen.h>
 
 #define as_file_ext ".as"
 #define am_file_ext ".am"
@@ -15,6 +14,10 @@
 #define SPACE_CHARS " \t\n\f\r\v"
 #define SKIP_SPACES_REVERSE(s,base) while (*s &&isspace(s)) s++
 
+static char* basename(char* path) {
+    char* base = strrchr(path, '/');
+    return base ? base + 1 : path;
+}
 
 enum project_preprocessor_detectline{
     nullLine,
@@ -39,11 +42,6 @@ static void * line_constructor(const void * copy){
 }
 
 
-static void macro_distructor(void * item){
-    struct macro * macro = item;
-    vector_destroy(&macro->lines);
-    free(macro);
-}
 
 static void line_distructor(void * item){
     free(item);
@@ -54,6 +52,11 @@ void * macro_constructor(const void * copy){
     strcpy(new_macro->macro_name, copy1-> macro_name);
     new_macro -> lines = new_vector(line_constructor,line_distructor);
     return new_macro;
+}
+static void macro_distructor(void * item){
+    struct macro * macro = item;
+    vector_destroy(&macro->lines);
+    free(macro);
 }
 static enum project_preprocessor_detectline project_preprocessor_checkLine(char * line, struct macro **macro, const Trie macro_lookup, Vector macro_table){
     struct macro new_macro = {0};
@@ -93,7 +96,7 @@ static enum project_preprocessor_detectline project_preprocessor_checkLine(char 
         if(*macro) return alreadyExists;
         strcpy(new_macro.macro_name,line);
         *macro = vector_insert(macro_table,&new_macro);
-        trie_insert(macro_lookup,line,(*macro));
+        trie_insert(macro_lookup,line,vector_insert(macro_table,&new_macro));
         return macroDefinition;
     }
     
@@ -152,6 +155,8 @@ const char * project_preprocess(char * file_base_name, const char * out_dir){
         free(as_file_name);
         return NULL;
     }
+    macro_table = new_vector(macro_constructor,macro_distructor);
+    macro_lookup_table = trie();
     while(fgets(line_buff,sizeof(line_buff),as_file)){
         switch(mpld = project_preprocessor_checkLine(line_buff,&macro,macro_lookup_table,macro_table)){
             case macroDefinition:

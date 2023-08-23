@@ -2,12 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <libgen.h>
 
 #define EXT_EXTENSION ".ext"
 #define ENT_EXTENSION ".ent"
 #define OB_EXTENSION ".ob"
 #define BASE64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqurstuvwxyz123456789+/"
+
+static char* basename(char* path) {
+    char* base = strrchr(path, '/');
+    return base ? base + 1 : path;
+}
+
 static void project_output_ent_file(const char * ent_file_name, Vector symbol_table){
     FILE * ent_file;
     void * const * begin;
@@ -52,7 +57,6 @@ void project_output_memory_section(FILE * file, const Vector mem_sec) {
     unsigned int msb;
     unsigned int lsb;
     const char * const b64_chars = BASE64;
-    int i;
     VECTOR_FOR_EACH(begin, end, mem_sec) {
         if (*begin) {
             msb= (*(unsigned int *)(*begin) >> 6) &0x3F;
