@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,8 +5,8 @@
 #include "input_utils.h"
 #include "globals.h"
 #include "table_management.h"
-#include "assembler_utils.h"
-#include "error_handler.h"
+#include "../assembler_utils/assembler_utils.c"
+#include "../error_handler/error_handler.c"
 #include "file_utils.h"
 
 int first_pass(FILE* src_file, CPU * assembler_cpu, unsigned int * IC, unsigned int * DC, symbol_table **symbols, macro_table * macros, unsigned int* ERROR_FLAG) {

@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_FILE_UTILS_H
 #define ASSEMBLERPROJECT_FILE_UTILS_H
 

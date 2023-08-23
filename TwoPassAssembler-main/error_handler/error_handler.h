@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_ERROR_HANDLER_H
 #define ASSEMBLERPROJECT_ERROR_HANDLER_H
 

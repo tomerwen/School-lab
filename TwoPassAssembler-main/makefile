@@ -1,6 +1,6 @@
 CC = gcc
 EXEC = assembler
-OBJS = assembler.o assembler_utils.o error_handler.o file_utils.o first_pass.o input_utils.o pre_assembler.o second_pass.o table_management.o
+OBJS = assembler.o assembler_utils/assembler_utils.o error_handler/error_handler.o file_utils/file_utils.o first_pass/first_pass.o input_utils/input_utils.o pre/pre_assembler.o sec/second_pass.o management/table_management.o
 COMP_FLAG = -ansi -Wall -pedantic
 DEBUG_FLAG = -g
 

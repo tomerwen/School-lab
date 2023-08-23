@@ -1,11 +1,9 @@
-/* Created by Alex Persky. */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include "input_utils.h"
-#include "error_handler.h"
+#include "../error_handler/error_handler.h"
 #include "globals.h"
 
 char * skip_spaces(char * str, unsigned int * offset) {

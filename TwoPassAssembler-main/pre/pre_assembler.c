@@ -1,15 +1,13 @@
-/* Created by Alex Persky. */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pre_assembler.h"
-#include "globals.h"
-#include "table_management.h"
-#include "input_utils.h"
-#include "file_utils.h"
-#include "error_handler.h"
-#include "assembler_utils.h"
+#include "../pre/pre_assembler.h"
+#include "../globals.h"
+#include "../management/table_management.h"
+#include "../in_utils/input_utils.h"
+#include "../file_utils/file_utils.h"
+#include "../error_handler/error_handler.h"
+#include "../assembler_utils/assembler_utils.h"
 
 int pre_assembler(char* filename, macro_table ** macros, unsigned int* ERROR_FLAG) {
     FILE *as_src_file, * as_dst_file;

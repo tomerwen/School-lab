@@ -1,12 +1,10 @@
-/* Created by Alex Persky. */
-
 #include <stdlib.h>
 #include <string.h>
-#include "file_utils.h"
-#include "globals.h"
-#include "input_utils.h"
-#include "table_management.h"
-#include "assembler_utils.h"
+#include "../file_utils/file_utils.h"
+#include "../globals.h"
+#include "../in_utils/input_utils.h"
+#include "../management/table_management.h"
+#include "../assembler_utils/assembler_utils.h"
 
 int open_file(FILE** file, char* filename, char* filetype, char* io_mode)
 {

@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_PRE_ASSEMBLER_H
 #define ASSEMBLERPROJECT_PRE_ASSEMBLER_H
 

@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #include "error_handler.h"
 #include "globals.h"
 

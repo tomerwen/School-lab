@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_FIRST_PASS_H
 #define ASSEMBLERPROJECT_FIRST_PASS_H
 

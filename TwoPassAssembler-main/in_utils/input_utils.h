@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_INPUT_UTILS_H
 #define ASSEMBLERPROJECT_INPUT_UTILS_H
 

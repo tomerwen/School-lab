@@ -1,5 +1,3 @@
-/* Created by Alex Persky. */
-
 #ifndef ASSEMBLERPROJECT_GLOBALS_H
 #define ASSEMBLERPROJECT_GLOBALS_H
 
